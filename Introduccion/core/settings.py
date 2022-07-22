@@ -1,13 +1,18 @@
 from pathlib import Path
+import os
+import environ #se crea una coneccion al archivo .env
+
+env= environ.Env() #?Para crear variabes
+environ.Env.read_env() #?Para leer variabes
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-f7h+-($337z=c1ockcimlcprjn+3(o6ui11vxwzaub%b%ifpyh'
+SECRET_KEY = os.environ.get('SECRET_KEY')  #!manera de llamar a las variables protegidas en .env
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,7 +41,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
