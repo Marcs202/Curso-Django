@@ -1,0 +1,16 @@
+Blog list
+<br>
+
+{% for post in posts %} <!--Se crea un for que recorra los 'posts' nombrados así en la vista-->>
+
+<a href="{% url 'blog:Detail' post.id %}">{{post.title}}</a> 
+<a href="{% url 'blog:Update' post.id %}">Update </a>
+<a href="{% url 'blog:Delete' post.id %}">Delete <br></a>
+{% endfor %}
+
+
+
+<br>
+<a href="{% url 'blog:Create' %}">Create</a>
+
+<!--hace referencia primero al core->url (namespace) y luego al url de blog-</-->
